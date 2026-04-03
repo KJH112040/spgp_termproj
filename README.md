@@ -16,9 +16,12 @@ Project 소개
 ---------
 1. 화면 구성
    + 타이틀 화면
+     <img width="893" height="560" alt="Image" src="https://github.com/user-attachments/assets/44fb1880-4572-42ca-a9f4-87c3a13a6a50" />
    + 게임 화면
+     <img width="893" height="560" alt="Image" src="https://github.com/user-attachments/assets/5e3c380a-bd6b-4263-abc8-2acc96e12f47" />
    + 일시 정지 화면: 게임 화면이 정지된 상태로 여러 메뉴 바(계속하기, 설정, 타이틀로 이동, 종료 등)를 띄운 화면
    + 결과 화면
+     <img width="893" height="560" alt="Image" src="https://github.com/user-attachments/assets/0acd7f05-ec9d-40bf-ac9f-c64302f4d2d9" />
    + 설정: 현재 위치한 화면 내에서 띄어지는 화면, 사운드나 왼손 플레이(게임 화면 버튼 위치) 설정 가능
 
 2. 캐릭터
@@ -30,7 +33,7 @@ Project 소개
 ---------
 예상 게임 실행 흐름
 ---------
-
+![Image](https://github.com/user-attachments/assets/dcdce0b2-f30f-4a7b-aadd-d0a7ec5d6a6e)
 ---------
 개발 일정
 ---------
