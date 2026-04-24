@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme._2023182006TermProj">
         <activity
+            android:name=".gameFlyActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
