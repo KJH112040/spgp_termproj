@@ -10,8 +10,9 @@ open class HorzScrollBackground (
 ) : Sprite(gctx, resId) {
     private val screenWidth = gctx.metrics.width
     private val screenHeight = gctx.metrics.height
+    private val tileHeight = bitmapHeight * screenWidth / bitmapWidth.toFloat()
 
     init{
-        
+        setCenterProportionalHeight(screenWidth / 2f, screenHeight / 2f, screenWidth)
     }
 }

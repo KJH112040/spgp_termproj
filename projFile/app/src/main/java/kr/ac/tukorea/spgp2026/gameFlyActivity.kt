@@ -1,13 +1,15 @@
 package kr.ac.tukorea.spgp2026
 
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import kr.ac.tukorea.ge.spgp2026.a2dg.activity.BaseGameActivity
+import kr.ac.tukorea.ge.spgp2026.a2dg.scene.Scene
+import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
 
-class gameFlyActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+class gameFlyActivity : BaseGameActivity() {
+    override val drawsDebugGrid = BuildConfig.DEBUG
+    override val drawsDebugInfo = BuildConfig.DEBUG
+    override val drawsFpsGraph = BuildConfig.DEBUG
+
+    override fun createRootScene(gctx: GameContext): Scene {
+        return MainScene(gctx)
     }
 }

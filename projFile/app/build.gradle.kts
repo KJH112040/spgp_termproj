@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId = "kr.ac.tukorea.spgp2026"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 36
         versionCode = 1
         versionName = "1.0"
