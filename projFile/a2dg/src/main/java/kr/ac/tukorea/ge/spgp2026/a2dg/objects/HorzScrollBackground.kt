@@ -13,11 +13,11 @@ open class HorzScrollBackground (
     private val tileWidth = bitmapWidth * screenHeight / bitmapHeight.toFloat()
 
     init{
-        setCenterProportionalHeight(screenWidth / 2f, screenHeight / 2f, screenHeight)
+        setCenterProportionalHeight(0f, screenHeight / 2f, screenHeight)
     }
 
     override fun update(gctx: GameContext) {
-        x += speed * gctx.frameTime
+        x -= speed * gctx.frameTime
     }
 
     override fun draw(canvas: Canvas) {

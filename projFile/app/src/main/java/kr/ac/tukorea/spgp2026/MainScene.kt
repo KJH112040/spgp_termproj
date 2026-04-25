@@ -19,6 +19,6 @@ class MainScene(gctx: GameContext) : Scene(gctx){
     }
 
     companion object {
-        private const val BACKGROUND_SPEED = 80f
+        private const val BACKGROUND_SPEED = 1000f
     }
 }
