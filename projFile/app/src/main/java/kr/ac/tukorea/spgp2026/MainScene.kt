@@ -8,16 +8,18 @@ import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
 class MainScene(gctx: GameContext) : Scene(gctx){
     enum class Layer {
         BACKGROUND,
-        CLOUD
+        CLOUD,
+        PLAYER
     }
 
     override val clipsRect = true
     private val background = HorzScrollBackground(gctx, R.mipmap.bg_res, BACKGROUND_SPEED)
     private val clouds = HorzScrollBackground(gctx, R.mipmap.clouds,CLOUD_SPEED)
-
+    private val player = Player(gctx)
     override val world = World(Layer.entries.toTypedArray()).apply {
         add(background,Layer.BACKGROUND)
         add(clouds,Layer.CLOUD)
+        add(player, Layer.PLAYER)
     }
 
     companion object {
