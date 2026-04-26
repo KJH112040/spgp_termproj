@@ -12,7 +12,7 @@ class MainScene(gctx: GameContext) : Scene(gctx){
     }
 
     override val clipsRect = true
-    private val background = HorzScrollBackground(gctx, R.mipmap.bg, BACKGROUND_SPEED)
+    private val background = HorzScrollBackground(gctx, R.mipmap.bg_res, BACKGROUND_SPEED)
 
     override val world = World(Layer.entries.toTypedArray()).apply {
         add(background,Layer.BACKGROUND)
