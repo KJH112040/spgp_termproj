@@ -9,21 +9,24 @@ class MainScene(gctx: GameContext) : Scene(gctx){
     enum class Layer {
         BACKGROUND,
         CLOUD,
+        HURDLE,
         PLAYER
     }
 
     override val clipsRect = true
     private val background = HorzScrollBackground(gctx, R.mipmap.bg_res, BACKGROUND_SPEED)
     private val clouds = HorzScrollBackground(gctx, R.mipmap.clouds,CLOUD_SPEED)
+    private val hurdle = Hurdle(gctx)
     private val player = Player(gctx)
     override val world = World(Layer.entries.toTypedArray()).apply {
         add(background,Layer.BACKGROUND)
         add(clouds,Layer.CLOUD)
+        add(hurdle,Layer.HURDLE)
         add(player, Layer.PLAYER)
     }
 
     companion object {
-        private const val BACKGROUND_SPEED = 80f
-        private const val CLOUD_SPEED = 40f
+        private const val BACKGROUND_SPEED = -100f
+        private const val CLOUD_SPEED = -150f
     }
 }
