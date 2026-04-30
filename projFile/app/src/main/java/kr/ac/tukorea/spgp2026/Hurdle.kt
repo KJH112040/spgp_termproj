@@ -16,7 +16,7 @@ class Hurdle /*private constructor*/(
     private val BOTTOM_PIPE = Rect(28,0,54,161)
     override var width = HURDLE_WIDTH
     var gap = 150f
-    override var x = gctx.metrics.width + HURDLE_WIDTH / 2f
+    override var x = gctx.metrics.width + width / 2f
     override var y = 1000f
     private var speed = DEFAULT_SPEED
     private val dstTop = RectF()
@@ -35,6 +35,10 @@ class Hurdle /*private constructor*/(
     override fun update(gctx: GameContext) {
         x -= speed * gctx.frameTime
 
+        if(x + width / 2f < 0f){
+            val scene = gctx.scene as? MainScene ?: return
+            scene.world.remove(this, MainScene.Layer.HURDLE)
+        }
         dstTop.set(
             x - width / 2f,
             0f,
