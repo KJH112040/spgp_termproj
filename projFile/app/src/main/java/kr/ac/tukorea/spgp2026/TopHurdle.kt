@@ -8,6 +8,8 @@ import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IBoxCollidable
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IRecyclable
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.Sprite
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
+import kr.ac.tukorea.spgp2026.Player.Companion.COLLISION_INSET_X
+import kr.ac.tukorea.spgp2026.Player.Companion.COLLISION_INSET_Y
 
 class TopHurdle private constructor(
     private val gctx: GameContext
@@ -24,6 +26,7 @@ class TopHurdle private constructor(
     init{
         srcRect = Rect(0,0,26,161)
         syncDstRect(top = 0f, bottom = y - gap / 2f)
+        updateCollisionRect()
     }
 
     fun init(y: Float, speed: Float, gap: Float): TopHurdle{
@@ -43,15 +46,22 @@ class TopHurdle private constructor(
         }
 
         syncDstRect(top = 0f, bottom = y - gap / 2f)
+        updateCollisionRect()
     }
     override fun draw(canvas: Canvas) {
         super.draw(canvas)
+    }
+    private fun updateCollisionRect(){
+        collisionRect.set(dstRect)
+        collisionRect.inset(COLLISION_INSET_X, COLLISION_INSET_Y)
     }
     override fun onRecycle() {
     }
     companion object{
         const val HURDLE_WIDTH = 150f
         const val DEFAULT_SPEED = 100f
+        const val COLLISION_INSET_X = 10f
+        const val COLLISION_INSET_Y = 10f
         fun get(gctx: GameContext, y: Float, speed: Float, gap: Float): TopHurdle{
             val scene = gctx.scene as? MainScene ?: return TopHurdle(gctx).init(y, speed, gap)
             val Thurdle = scene.world.obtain(TopHurdle::class.java) ?: TopHurdle(gctx)
