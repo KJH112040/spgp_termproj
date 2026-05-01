@@ -18,25 +18,34 @@ class Player(val gctx: GameContext): Sprite(gctx,R.mipmap.blue_bird), IBoxCollid
     override var x = gctx.metrics.width / 2f
     override var y = gctx.metrics.height / 2f
     override val collisionRect = RectF()
+    private var Hp = DEFAULT_HP
     init{
-        srcRect = Rect(0, 0, PLANE_SRC_WIDTH, PLANE_SRC_WIDTH)
+        srcRect = Rect(0, 0, SRC_WIDTH, SRC_WIDTH)
         syncDstRect()
+        updateCollisionRect()
     }
 
     override fun update(gctx: GameContext){
-
+        syncDstRect()
+        updateCollisionRect()
     }
 
     override fun draw(canvas: Canvas){
         super.draw(canvas)
     }
 
+    private fun updateCollisionRect(){
+        collisionRect.set(dstRect)
+        collisionRect.inset(COLLISION_INSET_X, COLLISION_INSET_Y)
+    }
+
     companion object{
+        const val DEFAULT_HP = 5
         const val SPEED = 300f
         const val PLAYER_WIDTH = 150f
         const val PLAYER_HEIGHT = 150f
-        const val PLANE_SRC_WIDTH = 40
-        const val COLLISION_INSET_X = 40f
-        const val COLLISION_INSET_Y = 40f
+        const val SRC_WIDTH = 40
+        const val COLLISION_INSET_X = 135f
+        const val COLLISION_INSET_Y = 135f
     }
 }
