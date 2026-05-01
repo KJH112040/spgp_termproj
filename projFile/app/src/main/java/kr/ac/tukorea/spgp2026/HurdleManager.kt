@@ -11,37 +11,35 @@ class HurdleManager(
     private var stepUpTime = 30f
     private var step = 1
     private var hurdleTime = 0f
-    private var genInterval = 15f
-    private var speed = 50f
+    private var speed = 100f
+    private var genInterval = DISTANCE/speed
     private var gap = 500f
     private var prev_y = gctx.metrics.height / 2f
     override fun update(gctx: GameContext) {
         hurdleTime -= gctx.frameTime
         stepUpTime -= gctx.frameTime
-        if(hurdleTime > 0f) return
 
-        generate()
         if(stepUpTime < 0f){
-            if(step > 60) return
             if(step % 2 == 0)
-                if(gap > MIN_GAP) gap -= 10f
-            if(step % 6 == 0)
-                if(genInterval > MIN_GEN_INTERVAL) genInterval -= 1f
-            if(speed < MAX_HURDLE_SPEED) speed += 50f
+                if(gap > MIN_GAP) gap = maxOf(MIN_GAP, gap - 30)
+            if(speed < MAX_HURDLE_SPEED) speed = minOf(MAX_HURDLE_SPEED, speed + 20f)
+
+            genInterval = maxOf(MIN_GEN_INTERVAL, DISTANCE/speed)
             step += 1
             stepUpTime = 30f
         }
+        if(hurdleTime > 0f) return
+
+        generate()
         hurdleTime = genInterval
     }
 
     private fun generate(){
         val scene = gctx.scene as? MainScene ?: return
-        // 점점 빨라지는 기둥의 속도, 생성 주기가 짧아짐. 빠져나갈 수 있는 간격이 줄어듬.
-        // 간격의 위치는 이전 간격 위치 기준 random +-100
-        val miny = prev_y - 100f
-        val maxy = prev_y + 100f
+        val miny = prev_y - 250f
+        val maxy = prev_y + 250f
         val y = (miny + Random.nextFloat() * (maxy - miny))
-            .coerceIn(650f, gctx.metrics.height - 650f)
+            .coerceIn(600f, gctx.metrics.height - 600f)
 
         scene.world.add(Hurdle.get(gctx,y,speed,gap), MainScene.Layer.HURDLE)
 
@@ -53,8 +51,9 @@ class HurdleManager(
     }
 
     companion object{
-        const val MIN_GEN_INTERVAL = 5f
-        const val MAX_HURDLE_SPEED = 300f
+        const val DISTANCE = 600f
+        const val MIN_GEN_INTERVAL = 0.5f
+        const val MAX_HURDLE_SPEED = DISTANCE/MIN_GEN_INTERVAL
         const val MIN_GAP = 150f
     }
 }
