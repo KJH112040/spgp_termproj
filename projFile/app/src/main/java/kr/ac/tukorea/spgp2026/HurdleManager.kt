@@ -41,7 +41,8 @@ class HurdleManager(
         val y = (miny + Random.nextFloat() * (maxy - miny))
             .coerceIn(600f, gctx.metrics.height - 600f)
 
-        scene.world.add(Hurdle.get(gctx,y,speed,gap), MainScene.Layer.HURDLE)
+        scene.world.add(TopHurdle.get(gctx,y,speed,gap), MainScene.Layer.HURDLE)
+        scene.world.add(BottomHurdle.get(gctx,y,speed,gap), MainScene.Layer.HURDLE)
 
         prev_y = y
     }
