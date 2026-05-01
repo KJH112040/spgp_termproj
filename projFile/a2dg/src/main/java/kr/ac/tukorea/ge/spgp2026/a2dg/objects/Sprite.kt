@@ -122,12 +122,15 @@ open class Sprite(
 
     // 중심점 x, y 와 width, height 를 좌상단/우하단 좌표로 풀어
     // Canvas 가 이해하는 RectF 형태로 다시 맞춘다.
-    fun syncDstRect() {
+    fun syncDstRect(left: Float = x - width / 2f,
+                    top: Float = y - height / 2f,
+                    right: Float = x + width / 2f,
+                    bottom: Float = y + height / 2f) {
         dstRect.set(
-            x - width / 2f,
-            y - height / 2f,
-            x + width / 2f,
-            y + height / 2f,
+            left,
+            top,
+            right,
+            bottom
         )
     }
 }
