@@ -17,19 +17,21 @@ class Hurdle /*private constructor*/(
     override var width = HURDLE_WIDTH
     var gap = 150f
     override var x = gctx.metrics.width + width / 2f
-    override var y = 1000f
+    override var y = gctx.metrics.height / 2
     private var speed = DEFAULT_SPEED
     private val dstTop = RectF()
     private val dstBottom = RectF()
     override val collisionRect = RectF()
 
     init{
-
     }
 
-//    fun init(): Hurdle{
-//        return this
-//    }
+    fun init(y: Float, speed: Float, gap: Float): Hurdle{
+        this.y = y
+        this.speed = speed
+        this.gap = gap
+        return this
+    }
 
 
     override fun update(gctx: GameContext) {
@@ -39,6 +41,7 @@ class Hurdle /*private constructor*/(
             val scene = gctx.scene as? MainScene ?: return
             scene.world.remove(this, MainScene.Layer.HURDLE)
         }
+
         dstTop.set(
             x - width / 2f,
             0f,
@@ -62,9 +65,10 @@ class Hurdle /*private constructor*/(
     companion object{
         const val HURDLE_WIDTH = 150f
         const val DEFAULT_SPEED = 50f
-//        fun get(gctx: GameContext): Hurdle{
-//            val hurdle = Hurdle()
-//            return hurdle.init()
-//        }
+        fun get(gctx: GameContext, y: Float, speed: Float, gap: Float): Hurdle{
+            val scene = gctx.scene as? MainScene ?: return Hurdle(gctx).init(y, speed, gap)
+            val hurdle = scene.world.obtain(Hurdle::class.java) ?: Hurdle(gctx)
+            return hurdle.init(y, speed, gap)
+        }
     }
 }
