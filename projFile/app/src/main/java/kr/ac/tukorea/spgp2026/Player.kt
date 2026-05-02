@@ -12,7 +12,9 @@ import kr.ac.tukorea.ge.spgp2026.a2dg.util.Gauge
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
 import kotlin.math.abs
 
-class Player(val gctx: GameContext): Sprite(gctx,R.mipmap.blue_bird), IBoxCollidable {
+class Player(
+    val gctx: GameContext
+): Sprite(gctx,R.mipmap.blue_bird), IBoxCollidable {
     override var width = PLAYER_WIDTH
     override var height = PLAYER_HEIGHT
     override var x = gctx.metrics.width / 2f

@@ -17,13 +17,15 @@ class MainScene(gctx: GameContext) : Scene(gctx){
     override val clipsRect = true
     private val background = HorzScrollBackground(gctx, R.mipmap.bg_res, BACKGROUND_SPEED)
     private val clouds = HorzScrollBackground(gctx, R.mipmap.clouds,CLOUD_SPEED)
+    val player = Player(gctx)
     private val hurdles = HurdleManager(gctx)
-    private val player = Player(gctx)
+    private val collisionChecker = CollisionChecker(gctx)
     override val world = World(Layer.entries.toTypedArray()).apply {
         add(background,Layer.BACKGROUND)
         add(clouds,Layer.CLOUD)
         add(player, Layer.PLAYER)
         add(hurdles,Layer.CONTROLLER)
+        add(collisionChecker,Layer.CONTROLLER)
     }
 
     companion object {
