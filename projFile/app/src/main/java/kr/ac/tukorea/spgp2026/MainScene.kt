@@ -34,6 +34,12 @@ class MainScene(gctx: GameContext) : Scene(gctx){
 
         add(player, Layer.PLAYER)
 
+        add(Button(gctx, R.mipmap.skill_btn, gctx.metrics.width / 2f, gctx.metrics.height - 200f, SKILL_BUTTON_SIZE, SKILL_BUTTON_SIZE) { pressed ->
+            if (pressed) {
+
+            }
+            true
+        }, Layer.TOUCH)
         add(Button(gctx, R.mipmap.btn_pause, gctx.metrics.width - 100f, 100f, PAUSE_BUTTON_SIZE, PAUSE_BUTTON_SIZE) { pressed ->
             if (pressed) {
 
@@ -60,5 +66,6 @@ class MainScene(gctx: GameContext) : Scene(gctx){
         private const val BACKGROUND_SPEED = -100f
         private const val CLOUD_SPEED = -150f
         private const val PAUSE_BUTTON_SIZE = 100f
+        private const val SKILL_BUTTON_SIZE = 200f
     }
 }
