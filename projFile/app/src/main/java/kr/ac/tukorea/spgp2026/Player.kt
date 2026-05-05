@@ -23,7 +23,7 @@ class Player(
     val minPlayerY = PLAYER_HEIGHT / 2f
     val maxPlayerY = gctx.metrics.height - PLAYER_HEIGHT / 2f
     private var Hp = DEFAULT_HP
-    private var sp = SPEED
+    private var sp = 0f
     init{
         srcRect = Rect(0, 0, SRC_WIDTH, SRC_WIDTH)
         syncDstRect()
@@ -34,7 +34,7 @@ class Player(
         //터치하지 않았을 때 계속 아래로 하강
         //터치했을 때 위로 날기.
         y += sp * gctx.frameTime
-        sp = GRAVITY * gctx.frameTime
+        sp += GRAVITY * gctx.frameTime
         y = y.coerceAtLeast(minPlayerY)
 
         //if(y >= maxPlayerY) gameover(아예 바닥으로 떨어졌을 경우 hp 관계 없이 바로 종료되도록)
@@ -57,11 +57,11 @@ class Player(
 
     companion object{
         const val DEFAULT_HP = 5
-        const val SPEED = 900f
+        const val SPEED = 700f
         const val PLAYER_WIDTH = 150f
         const val PLAYER_HEIGHT = 150f
         const val SRC_WIDTH = 40
-        const val GRAVITY = 1700f
+        const val GRAVITY = 1000f
         const val COLLISION_INSET_X = 135f
         const val COLLISION_INSET_Y = 135f
     }
