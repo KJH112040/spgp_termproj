@@ -23,8 +23,9 @@ class Player(
     override val collisionRect = RectF()
     val minPlayerY = PLAYER_HEIGHT / 2f
     val maxPlayerY = gctx.metrics.height - PLAYER_HEIGHT / 2f
-    private var Hp = DEFAULT_HP
+    var hp = DEFAULT_HP
     private var sp = 0f
+    private var hitCoolTime = 0f
     init{
         srcRect = Rect(0, 0, SRC_WIDTH, SRC_WIDTH)
         syncDstRect()
@@ -32,13 +33,12 @@ class Player(
     }
 
     override fun update(gctx: GameContext){
-        //터치하지 않았을 때 계속 아래로 하강
-        //터치했을 때 위로 날기.
+        hitCoolTime -= gctx.frameTime
+
         y += sp * gctx.frameTime
         sp += SPEED * gctx.frameTime
         y = y.coerceAtLeast(minPlayerY)
 
-        //if(y >= maxPlayerY) gameover(아예 바닥으로 떨어졌을 경우 hp 관계 없이 바로 종료되도록)
         syncDstRect()
         updateCollisionRect()
     }
@@ -56,13 +56,19 @@ class Player(
         sp = -SPEED
     }
 
+    fun hit(){
+        if(hitCoolTime > 0f) return
+        hitCoolTime = 10f
+        hp -= 1
+    }
+
     companion object{
         const val DEFAULT_HP = 5
         const val SPEED = 700f
         const val PLAYER_WIDTH = 150f
         const val PLAYER_HEIGHT = 150f
         const val SRC_WIDTH = 40
-        const val FPS = 5f
+        const val FPS = 2f
         const val COLLISION_INSET_X = 20f
         const val COLLISION_INSET_Y = 20f
     }

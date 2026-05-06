@@ -34,8 +34,6 @@ class TopHurdle private constructor(
         this.y = y
         this.speed = speed
         this.gap = gap
-        syncDstRect(top = 0f, bottom = y - gap / 2f)
-        updateCollisionRect()
         return this
     }
 

@@ -34,9 +34,6 @@ class BottomHurdle private constructor(
         this.y = y
         this.speed = speed
         this.gap = gap
-
-        syncDstRect(top = y + gap / 2f, bottom = gctx.metrics.height)
-        updateCollisionRect()
         return this
     }
 
