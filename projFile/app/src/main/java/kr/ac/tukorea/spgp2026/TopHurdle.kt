@@ -34,6 +34,8 @@ class TopHurdle private constructor(
         this.y = y
         this.speed = speed
         this.gap = gap
+        syncDstRect(top = 0f, bottom = y - gap / 2f)
+        updateCollisionRect()
         return this
     }
 
@@ -60,8 +62,8 @@ class TopHurdle private constructor(
     companion object{
         const val HURDLE_WIDTH = 150f
         const val DEFAULT_SPEED = 100f
-        const val COLLISION_INSET_X = 10f
-        const val COLLISION_INSET_Y = 10f
+        const val COLLISION_INSET_X = 5f
+        const val COLLISION_INSET_Y = 5f
         fun get(gctx: GameContext, y: Float, speed: Float, gap: Float): TopHurdle{
             val scene = gctx.scene as? MainScene ?: return TopHurdle(gctx).init(y, speed, gap)
             val Thurdle = scene.world.obtain(TopHurdle::class.java) ?: TopHurdle(gctx)

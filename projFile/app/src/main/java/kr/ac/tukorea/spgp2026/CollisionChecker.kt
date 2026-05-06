@@ -10,13 +10,18 @@ class CollisionChecker(private val gctx: GameContext): IGameObject {
         val scene = gctx.scene as? MainScene ?: return
         val player = scene.player
 
+        if(player.collisionRect.bottom > gctx.metrics.height) {
+            gctx.sceneStack.popAll()
+            return //떨어짐 처리
+        }
+
         scene.world.forEachReversedAt(MainScene.Layer.HURDLE){ hurdleObj ->
             val hurdle = hurdleObj as? TopHurdle ?:
             hurdleObj as? BottomHurdle ?: return@forEachReversedAt
 
-            if(player.collidesWith(hurdle)){
-                return@forEachReversedAt
-            }
+            if(!player.collidesWith(hurdle)) return@forEachReversedAt
+
+            gctx.sceneStack.popAll()
         }
     }
 

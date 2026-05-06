@@ -63,7 +63,7 @@ class Player(
         const val PLAYER_HEIGHT = 150f
         const val SRC_WIDTH = 40
         const val FPS = 5f
-        const val COLLISION_INSET_X = 135f
-        const val COLLISION_INSET_Y = 135f
+        const val COLLISION_INSET_X = 20f
+        const val COLLISION_INSET_Y = 20f
     }
 }
