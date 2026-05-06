@@ -26,6 +26,7 @@ class Player(
     var hp = DEFAULT_HP
     private var sp = 0f
     private var hitCoolTime = 0f
+    private var setAlphaTime = 0f
     init{
         srcRect = Rect(0, 0, SRC_WIDTH, SRC_WIDTH)
         syncDstRect()
@@ -33,7 +34,18 @@ class Player(
     }
 
     override fun update(gctx: GameContext){
-        hitCoolTime -= gctx.frameTime
+        if(hitCoolTime > 0f){
+            hitCoolTime -= gctx.frameTime
+            setAlphaTime += gctx.frameTime
+
+            if(setAlphaTime > 0.5f){
+                paint.alpha = if(paint.alpha == 255) 128 else 255
+                setAlphaTime = 0f
+            }
+        }else {
+            paint.alpha = 255
+            setAlphaTime = 0f
+        }
 
         y += sp * gctx.frameTime
         sp += SPEED * gctx.frameTime
@@ -58,17 +70,17 @@ class Player(
 
     fun hit(){
         if(hitCoolTime > 0f) return
-        hitCoolTime = 10f
+        hitCoolTime = 5f
         hp -= 1
     }
 
     companion object{
         const val DEFAULT_HP = 5
-        const val SPEED = 700f
+        const val SPEED = 500f
         const val PLAYER_WIDTH = 150f
         const val PLAYER_HEIGHT = 150f
         const val SRC_WIDTH = 40
-        const val FPS = 2f
+        const val FPS = 15f
         const val COLLISION_INSET_X = 20f
         const val COLLISION_INSET_Y = 20f
     }

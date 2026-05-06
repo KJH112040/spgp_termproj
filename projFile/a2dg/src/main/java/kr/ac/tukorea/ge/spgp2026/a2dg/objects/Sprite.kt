@@ -2,6 +2,7 @@ package kr.ac.tukorea.ge.spgp2026.a2dg.objects
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
+import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
@@ -48,7 +49,7 @@ open class Sprite(
     // 실제 Canvas 에 drawBitmap() 할 때 사용할 목적 사각형이다.
     // x, y, width, height 에서 매번 다시 계산하므로 바깥에서는 직접 만지지 않게 protected 로 둔다.
     protected val dstRect = RectF()
-
+    protected val paint = Paint()
     // x, y 는 Sprite 의 중심점이다.
     // 이동, 거리 계산, 회전 중심 처리 같은 게임 로직을 조금 더 직관적으로 쓰기 위해
     // left/top 대신 center 기준 좌표를 공통 상태로 사용한다.
