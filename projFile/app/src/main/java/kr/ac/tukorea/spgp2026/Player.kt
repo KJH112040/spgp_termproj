@@ -27,6 +27,12 @@ class Player(
     private var sp = 0f
     private var hitCoolTime = 0f
     private var setAlphaTime = 0f
+    private val gauge = Gauge(
+        0.1f,
+        gctx.view.context.getColor(R.color.hp_gauge_fg),
+        gctx.view.context.getColor(R.color.hp_gauge_bg),
+    )
+
     init{
         srcRect = Rect(0, 0, SRC_WIDTH, SRC_WIDTH)
         syncDstRect()
@@ -38,7 +44,7 @@ class Player(
             hitCoolTime -= gctx.frameTime
             setAlphaTime += gctx.frameTime
 
-            if(setAlphaTime > 0.5f){
+            if(setAlphaTime > 0.25f){
                 paint.alpha = if(paint.alpha == 255) 128 else 255
                 setAlphaTime = 0f
             }
@@ -57,6 +63,11 @@ class Player(
 
     override fun draw(canvas: Canvas){
         super.draw(canvas)
+
+        val gaugeWidth = width * 1f
+        val gaugeX = x - gaugeWidth / 2f
+        val gaugeY = dstRect.top
+        gauge.draw(canvas, gaugeX, gaugeY, gaugeWidth, hp.toFloat() / DEFAULT_HP)
     }
 
     private fun updateCollisionRect(){
@@ -70,7 +81,7 @@ class Player(
 
     fun hit(){
         if(hitCoolTime > 0f) return
-        hitCoolTime = 5f
+        hitCoolTime = 3.5f
         hp -= 1
     }
 
