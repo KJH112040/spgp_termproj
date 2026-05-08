@@ -6,22 +6,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="@string/start_Game"
+        android:onClick="onStartGameClicked"
         android:layout_centerInParent="true"
-        android:padding="50dp"
-        android:background="#bfff"
-        >
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/start_Game"
-            android:onClick="onStartGameClicked"
-            />
-    </LinearLayout>
+        android:translationY="200dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/setting"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="20dp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/character_setting"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        />
 
 </RelativeLayout>
