@@ -7,6 +7,7 @@ import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IGameObject
 import kr.ac.tukorea.ge.spgp2026.a2dg.scene.Scene
 import kr.ac.tukorea.ge.spgp2026.a2dg.scene.World
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
+import kr.ac.tukorea.spgp2026.Game.scenes.PauseScene
 
 class MainScene(gctx: GameContext) : Scene(gctx){
     enum class Layer {
@@ -42,7 +43,7 @@ class MainScene(gctx: GameContext) : Scene(gctx){
         }, Layer.TOUCH)
         add(Button(gctx, R.mipmap.btn_pause, gctx.metrics.width - 100f, 100f, PAUSE_BUTTON_SIZE, PAUSE_BUTTON_SIZE) { pressed ->
             if (pressed) {
-
+                PauseScene(gctx).push()
             }
             true
         }, Layer.TOUCH)
