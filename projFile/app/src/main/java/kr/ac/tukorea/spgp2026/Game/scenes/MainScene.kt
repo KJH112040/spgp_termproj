@@ -36,7 +36,7 @@ class MainScene(gctx: GameContext) : Scene(gctx){
 
         add(Button(gctx, R.mipmap.skill_btn, gctx.metrics.width / 2f, gctx.metrics.height - 200f, SKILL_BUTTON_SIZE, SKILL_BUTTON_SIZE) { pressed ->
             if (pressed) {
-
+                player.skill()
             }
             true
         }, Layer.TOUCH)

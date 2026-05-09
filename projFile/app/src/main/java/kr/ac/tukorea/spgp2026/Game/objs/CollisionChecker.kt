@@ -22,7 +22,7 @@ class CollisionChecker(private val gctx: GameContext): IGameObject {
             if(!player.collidesWith(hurdle)) return@forEachReversedAt
 
             player.hit()
-            if(player.hp <= 0) gctx.sceneStack.popAll()
+            if(player.isDead()) gctx.sceneStack.popAll()
         }
     }
 

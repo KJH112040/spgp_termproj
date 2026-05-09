@@ -23,8 +23,9 @@ class Player(
     override val collisionRect = RectF()
     val minPlayerY = PLAYER_HEIGHT / 2f
     val maxPlayerY = gctx.metrics.height - PLAYER_HEIGHT / 2f
-    var hp = DEFAULT_HP
+    private var hp = DEFAULT_HP
     private var sp = 0f
+    private var hasUsedSkill = false
     private var hitCoolTime = 0f
     private var setAlphaTime = 0f
     private val gauge = Gauge(
@@ -83,6 +84,16 @@ class Player(
         if(hitCoolTime > 0f) return
         hitCoolTime = 3.5f
         hp -= 1
+    }
+
+    fun isDead(): Boolean{
+        return hp <= 0
+    }
+
+    fun skill(){
+        if(hasUsedSkill) return
+        hp += 1
+        hasUsedSkill = true
     }
 
     companion object{
