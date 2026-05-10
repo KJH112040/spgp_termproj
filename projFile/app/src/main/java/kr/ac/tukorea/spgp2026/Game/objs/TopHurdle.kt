@@ -8,8 +8,6 @@ import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IBoxCollidable
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IRecyclable
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.Sprite
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
-import kr.ac.tukorea.spgp2026.Player.Companion.COLLISION_INSET_X
-import kr.ac.tukorea.spgp2026.Player.Companion.COLLISION_INSET_Y
 
 class TopHurdle private constructor(
     private val gctx: GameContext
@@ -20,6 +18,7 @@ class TopHurdle private constructor(
     override var x = gctx.metrics.width + width / 2f
     override var y = gctx.metrics.height / 2
     private var speed = DEFAULT_SPEED
+    private var canScore = true
 
     override val collisionRect = RectF()
 
@@ -38,6 +37,7 @@ class TopHurdle private constructor(
     }
 
     override fun update(gctx: GameContext) {
+        if(x > gctx.metrics.width / 2f) canScore = true
         x -= speed * gctx.frameTime
 
         if(x + width / 2f < 0f){
@@ -56,6 +56,14 @@ class TopHurdle private constructor(
         collisionRect.inset(COLLISION_INSET_X, COLLISION_INSET_Y)
     }
     override fun onRecycle() {
+    }
+
+    fun getScore(playerLeft: Float):Int{
+        if(canScore && playerLeft > collisionRect.right) {
+            canScore = false
+            return 1
+        }
+        return 0
     }
     companion object{
         const val HURDLE_WIDTH = 150f

@@ -19,6 +19,8 @@ class CollisionChecker(private val gctx: GameContext): IGameObject {
             val hurdle = hurdleObj as? TopHurdle ?:
             hurdleObj as? BottomHurdle ?: return@forEachReversedAt
 
+            if(hurdle is TopHurdle)
+                scene.addScore(hurdle.getScore(player.collisionRect.left))
             if(!player.collidesWith(hurdle)) return@forEachReversedAt
 
             player.hit()

@@ -4,9 +4,11 @@ import android.view.MotionEvent
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.Button
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.HorzScrollBackground
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IGameObject
+import kr.ac.tukorea.ge.spgp2026.a2dg.objects.ImageNumber
 import kr.ac.tukorea.ge.spgp2026.a2dg.scene.Scene
 import kr.ac.tukorea.ge.spgp2026.a2dg.scene.World
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
+import kr.ac.tukorea.spgp2026.Game.objs.Score
 import kr.ac.tukorea.spgp2026.Game.scenes.PauseScene
 
 class MainScene(gctx: GameContext) : Scene(gctx){
@@ -23,6 +25,7 @@ class MainScene(gctx: GameContext) : Scene(gctx){
     val player = Player(gctx)
     private val hurdles = HurdleManager(gctx)
     private val collisionChecker = CollisionChecker(gctx)
+    private val score = Score(gctx)
     override val world = World(Layer.entries.toTypedArray()).apply {
         listOf(
             R.mipmap.bg_res to BACKGROUND_SPEED,
@@ -47,6 +50,8 @@ class MainScene(gctx: GameContext) : Scene(gctx){
             }
             true
         }, Layer.TOUCH)
+
+        add(score, Layer.UI)
     }
 
     override fun touchObjects(): List<IGameObject> {
@@ -62,6 +67,10 @@ class MainScene(gctx: GameContext) : Scene(gctx){
             return true
         }
         return false
+    }
+
+    fun addScore(amount:Int){
+        score.value += amount
     }
     companion object {
         private const val BACKGROUND_SPEED = -100f
