@@ -11,11 +11,12 @@ import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IBoxCollidable
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.Sprite
 import kr.ac.tukorea.ge.spgp2026.a2dg.util.Gauge
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
+import kr.ac.tukorea.spgp2026.R
 import kotlin.math.abs
 
 class Player(
     gctx: GameContext
-): AnimSprite(gctx,R.mipmap.blue_bird,FPS), IBoxCollidable {
+): AnimSprite(gctx, R.mipmap.blue_bird,FPS), IBoxCollidable {
     override var width = PLAYER_WIDTH
     override var height = PLAYER_HEIGHT
     override var x = gctx.metrics.width / 2f
