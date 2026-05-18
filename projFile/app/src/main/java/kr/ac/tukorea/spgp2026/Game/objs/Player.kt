@@ -1,4 +1,4 @@
-package kr.ac.tukorea.spgp2026
+package kr.ac.tukorea.spgp2026.Game.objs
 
 import android.graphics.Bitmap
 import android.graphics.Canvas

@@ -1,4 +1,4 @@
-package kr.ac.tukorea.spgp2026
+package kr.ac.tukorea.spgp2026.Game.objs
 
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -8,10 +8,12 @@ import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IBoxCollidable
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IRecyclable
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.Sprite
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
+import kr.ac.tukorea.spgp2026.Game.scenes.MainScene
+import kr.ac.tukorea.spgp2026.R
 
 class TopHurdle private constructor(
     private val gctx: GameContext
-) : Sprite(gctx,R.mipmap.pipe), IBoxCollidable, IRecyclable {
+) : Sprite(gctx, R.mipmap.pipe), IBoxCollidable, IRecyclable {
     override var width = HURDLE_WIDTH
     var gap = 150f
         private set

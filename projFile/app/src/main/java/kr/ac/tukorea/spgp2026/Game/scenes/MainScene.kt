@@ -1,4 +1,4 @@
-package kr.ac.tukorea.spgp2026
+package kr.ac.tukorea.spgp2026.Game.scenes
 
 import android.view.MotionEvent
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.Button
@@ -8,8 +8,12 @@ import kr.ac.tukorea.ge.spgp2026.a2dg.objects.ImageNumber
 import kr.ac.tukorea.ge.spgp2026.a2dg.scene.Scene
 import kr.ac.tukorea.ge.spgp2026.a2dg.scene.World
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
+import kr.ac.tukorea.spgp2026.Game.objs.CollisionChecker
+import kr.ac.tukorea.spgp2026.Game.objs.HurdleManager
+import kr.ac.tukorea.spgp2026.Game.objs.Player
 import kr.ac.tukorea.spgp2026.Game.objs.Score
 import kr.ac.tukorea.spgp2026.Game.scenes.PauseScene
+import kr.ac.tukorea.spgp2026.R
 
 class MainScene(gctx: GameContext) : Scene(gctx){
     enum class Layer {

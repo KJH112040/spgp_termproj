@@ -1,4 +1,4 @@
-package kr.ac.tukorea.spgp2026
+package kr.ac.tukorea.spgp2026.app
 
 import android.app.Activity
 import android.content.Intent
@@ -11,6 +11,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import kr.ac.tukorea.spgp2026.BuildConfig
 import kr.ac.tukorea.spgp2026.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

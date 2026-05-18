@@ -1,9 +1,10 @@
-package kr.ac.tukorea.spgp2026
+package kr.ac.tukorea.spgp2026.Game.objs
 
 import android.graphics.Canvas
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IGameObject
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.collidesWith
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
+import kr.ac.tukorea.spgp2026.Game.scenes.MainScene
 
 class CollisionChecker(private val gctx: GameContext): IGameObject {
     override fun update(gctx: GameContext) {
