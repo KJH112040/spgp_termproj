@@ -85,7 +85,8 @@
             android:src="@drawable/select_btn_selector"
             android:scaleType="centerCrop"
             android:layout_marginTop="50dp"
-            android:background="@null"/>
+            android:background="@null"
+            android:onClick="onSelectCliked"/>
 
         <ImageButton
             android:id="@+id/leftButton"
@@ -97,7 +98,8 @@
             android:src="@drawable/prev_selector"
             android:scaleType="centerCrop"
             android:layout_marginTop="50dp"
-            android:background="@null"/>
+            android:background="@null"
+            android:onClick="onPrevCliked"/>
 
         <ImageButton
             android:id="@+id/rightButton"
@@ -109,7 +111,8 @@
             android:src="@drawable/next_selector"
             android:scaleType="centerCrop"
             android:layout_marginTop="50dp"
-            android:background="@null"/>
+            android:background="@null"
+            android:onClick="onNextCliked"/>
 
     </RelativeLayout>
 </FrameLayout>

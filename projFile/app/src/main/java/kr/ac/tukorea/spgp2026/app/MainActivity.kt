@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             binding.characterLayout.visibility = View.VISIBLE
             currPage = birdId
             binding.characterImg.setImageResource(characterImg[currPage])
+            binding.selectButton.isEnabled = false
         }
 
         binding.closeButton.setOnClickListener {
@@ -52,5 +53,28 @@ class MainActivity : AppCompatActivity() {
         Log.d(javaClass.simpleName, "Start Game")
         val intent = Intent(this, gameFlyActivity::class.java)
         startActivity(intent)
+    }
+
+    fun onPrevCliked(view: View) {
+        showImg(currPage - 1)
+    }
+    fun onNextCliked(view: View) {
+        showImg(currPage + 1)
+    }
+
+    private fun showImg(page: Int) {
+        val total = characterImg.size
+
+        currPage = (page + total) % total
+
+        binding.selectButton.isEnabled = currPage != birdId
+
+        binding.characterImg.setImageResource(characterImg[currPage]
+        )
+    }
+
+    fun onSelectCliked(view: View) {
+        birdId = currPage
+        binding.selectButton.isEnabled = false
     }
 }
