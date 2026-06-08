@@ -22,10 +22,17 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        if (BuildConfig.DEBUG) {
-            Handler(Looper.getMainLooper()).postDelayed({
-                startGameActivity()
-            }, 1000)
+//        if (BuildConfig.DEBUG) {
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                startGameActivity()
+//            }, 1000)
+//        }
+        binding.characterSettingButton.setOnClickListener {
+            binding.characterLayout.visibility = View.VISIBLE
+        }
+
+        binding.closeButton.setOnClickListener {
+            binding.characterLayout.visibility = View.GONE
         }
     }
 
