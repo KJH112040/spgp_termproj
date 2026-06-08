@@ -12,9 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import kr.ac.tukorea.spgp2026.BuildConfig
+import kr.ac.tukorea.spgp2026.R
 import kr.ac.tukorea.spgp2026.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
+    private var birdId = 0
+    private var currPage = birdId
+    private val characterImg = intArrayOf(
+        R.mipmap.c0, R.mipmap.c1, R.mipmap.c2
+        )
     private val binding by lazy { ActivityMainBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +35,8 @@ class MainActivity : AppCompatActivity() {
 //        }
         binding.characterSettingButton.setOnClickListener {
             binding.characterLayout.visibility = View.VISIBLE
+            currPage = birdId
+            binding.characterImg.setImageResource(characterImg[currPage])
         }
 
         binding.closeButton.setOnClickListener {
