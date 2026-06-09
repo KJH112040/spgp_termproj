@@ -25,7 +25,10 @@ class Player(
     override val collisionRect = RectF()
     val minPlayerY = PLAYER_HEIGHT / 2f
     val maxPlayerY = gctx.metrics.height - PLAYER_HEIGHT / 2f
-    private var hp = DEFAULT_HP
+    private var MaxHP = 5
+    private var SPEED = 400f
+    private var gravity = 400f
+    private var hp = 0
     private var sp = 0f
     private var hasUsedSkill = false
     private var hitCoolTime = 0f
@@ -37,6 +40,25 @@ class Player(
     )
 
     init{
+        when(resID){
+            R.mipmap.blue_bird -> {
+                MaxHP = 5
+                SPEED = 400f
+                gravity = 400f
+            }
+            R.mipmap.red_bird -> {
+                MaxHP = 3
+                SPEED = 350f
+                gravity = 500f
+            }
+            R.mipmap.yellow_bird -> {
+                MaxHP = 7
+                SPEED = 450f
+                gravity = 300f
+            }
+        }
+
+        hp = MaxHP
         srcRect = Rect(0, 0, SRC_WIDTH, SRC_WIDTH)
         syncDstRect()
         updateCollisionRect()
@@ -57,7 +79,7 @@ class Player(
         }
 
         y += sp * gctx.frameTime
-        sp += SPEED * gctx.frameTime
+        sp += gravity * gctx.frameTime
         y = y.coerceAtLeast(minPlayerY)
 
         syncDstRect()
@@ -70,7 +92,7 @@ class Player(
         val gaugeWidth = width * 1f
         val gaugeX = x - gaugeWidth / 2f
         val gaugeY = dstRect.top
-        gauge.draw(canvas, gaugeX, gaugeY, gaugeWidth, hp.toFloat() / DEFAULT_HP)
+        gauge.draw(canvas, gaugeX, gaugeY, gaugeWidth, hp.toFloat() / MaxHP)
     }
 
     private fun updateCollisionRect(){
@@ -99,8 +121,6 @@ class Player(
     }
 
     companion object{
-        const val DEFAULT_HP = 5
-        const val SPEED = 500f
         const val PLAYER_WIDTH = 150f
         const val PLAYER_HEIGHT = 150f
         const val SRC_WIDTH = 40
