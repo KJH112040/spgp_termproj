@@ -15,7 +15,7 @@ import kr.ac.tukorea.spgp2026.Game.objs.Score
 import kr.ac.tukorea.spgp2026.Game.scenes.PauseScene
 import kr.ac.tukorea.spgp2026.R
 
-class MainScene(gctx: GameContext) : Scene(gctx){
+class MainScene(gctx: GameContext, birdID: Int) : Scene(gctx){
     enum class Layer {
         BACKGROUND,
         HURDLE,
@@ -24,9 +24,18 @@ class MainScene(gctx: GameContext) : Scene(gctx){
         CONTROLLER,
         UI
     }
-
+    enum class BirdType {
+        BLUE,
+        RED,
+        YELLOW
+    }
     override val clipsRect = true
-    val player = Player(gctx)
+    val player = when(birdID){
+        0 -> Player(gctx,R.mipmap.blue_bird)
+        1 -> Player(gctx,R.mipmap.red_bird)
+        2 -> Player(gctx,R.mipmap.yellow_bird)
+        else -> Player(gctx,R.mipmap.blue_bird)
+    }
     private val hurdles = HurdleManager(gctx)
     private val collisionChecker = CollisionChecker(gctx)
     private val score = Score(gctx)

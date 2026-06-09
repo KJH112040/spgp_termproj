@@ -15,8 +15,9 @@ import kr.ac.tukorea.spgp2026.R
 import kotlin.math.abs
 
 class Player(
-    gctx: GameContext
-): AnimSprite(gctx, R.mipmap.blue_bird,FPS), IBoxCollidable {
+    gctx: GameContext,
+    resID: Int
+): AnimSprite(gctx, resID,FPS), IBoxCollidable {
     override var width = PLAYER_WIDTH
     override var height = PLAYER_HEIGHT
     override var x = gctx.metrics.width / 2f

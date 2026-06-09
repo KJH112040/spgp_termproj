@@ -11,6 +11,11 @@ class gameFlyActivity : BaseGameActivity() {
     override val drawsFpsGraph = true
 
     override fun createRootScene(gctx: GameContext): Scene {
-        return MainScene(gctx)
+        val birdID = intent.getIntExtra(KEY_BIRD_ID, 0)
+        return MainScene(gctx, birdID)
+    }
+
+    companion object{
+        const val KEY_BIRD_ID = "bird_id"
     }
 }

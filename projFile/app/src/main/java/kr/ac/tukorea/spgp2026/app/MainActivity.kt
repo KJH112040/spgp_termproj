@@ -52,6 +52,7 @@ class MainActivity : AppCompatActivity() {
     private fun startGameActivity() {
         Log.d(javaClass.simpleName, "Start Game")
         val intent = Intent(this, gameFlyActivity::class.java)
+        intent.putExtra(gameFlyActivity.KEY_BIRD_ID, birdId)
         startActivity(intent)
     }
 
