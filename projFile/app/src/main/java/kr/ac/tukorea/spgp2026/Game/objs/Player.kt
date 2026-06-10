@@ -16,7 +16,7 @@ import kotlin.math.abs
 
 class Player(
     gctx: GameContext,
-    resID: Int
+    private val resID: Int
 ): AnimSprite(gctx, resID,FPS), IBoxCollidable {
     override var width = PLAYER_WIDTH
     override var height = PLAYER_HEIGHT
@@ -25,7 +25,7 @@ class Player(
     override val collisionRect = RectF()
     val minPlayerY = PLAYER_HEIGHT / 2f
     val maxPlayerY = gctx.metrics.height - PLAYER_HEIGHT / 2f
-    private var MaxHP = 5
+    private var maxHP = 5
     private var SPEED = 400f
     private var gravity = 400f
     private var hp = 0
@@ -33,6 +33,7 @@ class Player(
     private var hasUsedSkill = false
     private var hitCoolTime = 0f
     private var setAlphaTime = 0f
+    private var skillDuration = 0f
     private val gauge = Gauge(
         0.1f,
         gctx.view.context.getColor(R.color.hp_gauge_fg),
@@ -42,23 +43,23 @@ class Player(
     init{
         when(resID){
             R.mipmap.blue_bird -> {
-                MaxHP = 5
+                maxHP = 5
                 SPEED = 400f
                 gravity = 400f
             }
             R.mipmap.red_bird -> {
-                MaxHP = 3
+                maxHP = 3
                 SPEED = 350f
                 gravity = 500f
             }
             R.mipmap.yellow_bird -> {
-                MaxHP = 7
+                maxHP = 7
                 SPEED = 450f
                 gravity = 300f
             }
         }
 
-        hp = MaxHP
+        hp = maxHP
         srcRect = Rect(0, 0, SRC_WIDTH, SRC_WIDTH)
         syncDstRect()
         updateCollisionRect()
@@ -74,8 +75,34 @@ class Player(
                 setAlphaTime = 0f
             }
         }else {
-            paint.alpha = 255
-            setAlphaTime = 0f
+            if(!(resID==R.mipmap.yellow_bird && skillDuration > 0f)){
+                paint.alpha = 255
+                setAlphaTime = 0f
+            }
+        }
+
+        if (skillDuration > 0f){
+            if(resID == R.mipmap.yellow_bird){
+                setAlphaTime += gctx.frameTime
+
+                if(setAlphaTime > 0.25f){
+                    paint.alpha = if(paint.alpha == 255) 128 else 255
+                    setAlphaTime = 0f
+                }
+            }
+            skillDuration -= gctx.frameTime
+            if (skillDuration > 0f == false){
+                when(resID){
+                    R.mipmap.yellow_bird -> {
+                        paint.alpha = 255
+                        setAlphaTime = 0f
+                    }
+
+                    R.mipmap.red_bird -> {
+                        gravity = 500f
+                    }
+                }
+            }
         }
 
         y += sp * gctx.frameTime
@@ -92,7 +119,7 @@ class Player(
         val gaugeWidth = width * 1f
         val gaugeX = x - gaugeWidth / 2f
         val gaugeY = dstRect.top
-        gauge.draw(canvas, gaugeX, gaugeY, gaugeWidth, hp.toFloat() / MaxHP)
+        gauge.draw(canvas, gaugeX, gaugeY, gaugeWidth, hp.toFloat() / maxHP)
     }
 
     private fun updateCollisionRect(){
@@ -106,6 +133,7 @@ class Player(
 
     fun hit(){
         if(hitCoolTime > 0f) return
+        if(resID==R.mipmap.yellow_bird && skillDuration > 0f) return
         hitCoolTime = 3.5f
         hp -= 1
     }
@@ -116,7 +144,19 @@ class Player(
 
     fun skill(){
         if(hasUsedSkill) return
-        hp += 1
+        when(resID){
+            R.mipmap.blue_bird -> {
+                if (hp == maxHP) return
+                hp += 1
+            }
+            R.mipmap.red_bird -> {
+                gravity = 350f
+                skillDuration = 15f
+            }
+            R.mipmap.yellow_bird -> {
+                skillDuration = 15f
+            }
+        }
         hasUsedSkill = true
     }
 
