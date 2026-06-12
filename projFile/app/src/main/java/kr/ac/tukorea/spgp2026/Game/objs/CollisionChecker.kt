@@ -4,6 +4,7 @@ import android.graphics.Canvas
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.IGameObject
 import kr.ac.tukorea.ge.spgp2026.a2dg.objects.collidesWith
 import kr.ac.tukorea.ge.spgp2026.a2dg.view.GameContext
+import kr.ac.tukorea.spgp2026.Game.scenes.GameOverScene
 import kr.ac.tukorea.spgp2026.Game.scenes.MainScene
 
 class CollisionChecker(private val gctx: GameContext): IGameObject {
@@ -12,8 +13,8 @@ class CollisionChecker(private val gctx: GameContext): IGameObject {
         val player = scene.player
 
         if(player.collisionRect.bottom > gctx.metrics.height) {
-            gctx.sceneStack.popAll()
-            return //떨어짐 처리
+            GameOverScene(gctx, player.id, scene.resultScore).change()
+            return
         }
 
         scene.world.forEachReversedAt(MainScene.Layer.HURDLE){ hurdleObj ->
@@ -25,7 +26,10 @@ class CollisionChecker(private val gctx: GameContext): IGameObject {
             if(!player.collidesWith(hurdle)) return@forEachReversedAt
 
             player.hit()
-            if(player.isDead()) gctx.sceneStack.popAll()
+            if(player.isDead()) {
+                GameOverScene(gctx, player.id, scene.resultScore).change()
+                return@forEachReversedAt
+            }
         }
     }
 

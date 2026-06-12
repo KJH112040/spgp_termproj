@@ -39,6 +39,8 @@ class Player(
         gctx.view.context.getColor(R.color.hp_gauge_fg),
         gctx.view.context.getColor(R.color.hp_gauge_bg),
     )
+    val id : Int
+        get() = resID
 
     init{
         when(resID){

@@ -24,11 +24,7 @@ class MainScene(gctx: GameContext, birdID: Int) : Scene(gctx){
         CONTROLLER,
         UI
     }
-    enum class BirdType {
-        BLUE,
-        RED,
-        YELLOW
-    }
+
     override val clipsRect = true
     val player = when(birdID){
         0 -> Player(gctx,R.mipmap.blue_bird)
@@ -39,6 +35,8 @@ class MainScene(gctx: GameContext, birdID: Int) : Scene(gctx){
     private val hurdles = HurdleManager(gctx)
     private val collisionChecker = CollisionChecker(gctx)
     private val score = Score(gctx)
+    val resultScore : Int
+        get() = score.value
     override val world = World(Layer.entries.toTypedArray()).apply {
         listOf(
             R.mipmap.bg_res to BACKGROUND_SPEED,
