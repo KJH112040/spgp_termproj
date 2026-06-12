@@ -38,6 +38,14 @@ class GameOverScene (
             add(HorzScrollBackground(gctx, resId, 0f), Layer.BACKGROUND)
         }
 
+        add(Sprite(gctx, R.mipmap.game_over).apply {
+            x = gctx.metrics.width / 2f
+            y = GAMEOVER_TEXT_H / 2f
+            width = GAMEOVER_TEXT_W
+            height = GAMEOVER_TEXT_H
+            syncDstRect()
+        }, Layer.BACKGROUND)
+
         add(Sprite(gctx, id).apply {
             x = gctx.metrics.width / 2f - PLAYER_WIDTH
             y = gctx.metrics.height / 2f
@@ -54,6 +62,15 @@ class GameOverScene (
             60f).apply {
            value = score
         }, Layer.BACKGROUND)
+
+        add(Button(gctx,R.mipmap.mv2title_btn,
+            gctx.metrics.width / 2f, gctx.metrics.height / 2f + PLAYER_HEIGHT * 2.5f,
+            300f, 150f){ pressed ->
+            if(pressed){
+                gctx.sceneStack.popAll()
+            }
+            true
+        }, Layer.TOUCH)
     }
     override fun touchObjects(): List<IGameObject> {
         return world.objectsAt(Layer.TOUCH)
@@ -62,5 +79,7 @@ class GameOverScene (
     companion object {
         const val PLAYER_WIDTH = 200f
         const val PLAYER_HEIGHT = 200f
+        const val  GAMEOVER_TEXT_W = 800f
+        const val  GAMEOVER_TEXT_H = 600f
     }
 }

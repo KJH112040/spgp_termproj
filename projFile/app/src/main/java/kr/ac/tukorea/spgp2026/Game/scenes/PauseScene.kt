@@ -34,17 +34,8 @@ class PauseScene(gctx: GameContext) : Scene(gctx) {
             true
         }, Layer.TOUCH)
 
-        add(Button(gctx,R.mipmap.setting_btn,
-            gctx.metrics.width / 2f, gctx.metrics.height / 2f,
-            200f, 100f){ pressed ->
-            if(pressed){
-                // 설정 어떻게 만들지
-            }
-            true
-        }, Layer.TOUCH)
-
         add(Button(gctx,R.mipmap.mv2title_btn,
-            gctx.metrics.width / 2f, gctx.metrics.height / 2f + 150f,
+            gctx.metrics.width / 2f, gctx.metrics.height / 2f,
             200f, 100f){ pressed ->
             if(pressed){
                 gctx.sceneStack.popAll()

@@ -30,16 +30,6 @@
             />
 
         <Button
-            android:id="@+id/settingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/setting"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
-            android:layout_margin="20dp"
-            />
-
-        <Button
             android:id="@+id/characterSettingButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
