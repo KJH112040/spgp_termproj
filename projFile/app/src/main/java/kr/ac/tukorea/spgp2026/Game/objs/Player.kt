@@ -131,6 +131,7 @@ class Player(
 
     fun fly(){
         sp = -SPEED
+        gctx.res.sound.playEffect(R.raw.fly)
     }
 
     fun hit(){
