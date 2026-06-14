@@ -16,7 +16,7 @@
 | 사운드 | 99% |
 
 + 주차별 커밋 횟수
-![github-insights-commits](발표/3차/commit.png)
+![github-insights-commits](https://github.com/KJH112040/spgp_termproj/blob/main/%EB%B0%9C%ED%91%9C/3%EC%B0%A8/Commits.png)
 
 -----
 ### 사용된 기술
